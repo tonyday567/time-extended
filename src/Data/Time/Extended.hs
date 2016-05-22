@@ -17,7 +17,6 @@ import Data.Text (Text)
 import Data.Time
 import Formatting
 import Formatting.Time
-import System.Locale (defaultTimeLocale)
 
 -- Binary instances hard-coding millisec resolution
 instance Binary UTCTime where
@@ -67,7 +66,7 @@ bTime t =
 
 bTime' :: TimeOfDay -> Builder
 bTime' t =
-  stringUtf8 $ formatTime defaultTimeLocale "%H:%M:%S%Q" t
+  stringUtf8 $ formatTime Data.Time.defaultTimeLocale "%H:%M:%S%Q" t
 -- {-# INLINE bTime' #-}
 
 bUTCTime :: UTCTime -> Builder
@@ -76,7 +75,7 @@ bUTCTime t =
 
 bUTCTime' :: UTCTime -> Builder
 bUTCTime' t =
-  stringUtf8 $ formatTime defaultTimeLocale "%Y-%m-%d %H:%M:%S%Q" t
+  stringUtf8 $ formatTime Data.Time.defaultTimeLocale "%Y-%m-%d %H:%M:%S%Q" t
 
 bDiffTime :: DiffTime -> Builder
 bDiffTime t = bTime $ timeToTimeOfDay t
