@@ -41,9 +41,11 @@ instance Binary TimeOfDay where
   put (TimeOfDay h m s) = put h >> put m >> put s
   get = liftM3 TimeOfDay (get :: Get Int) (get :: Get Int) (get :: Get Pico)
 
+{-
 instance Binary Pico where
   put = put . fromEnum
   get = toEnum <$> (get :: Get Int)
+-}
 
 {- $UTCTime builders -}
 -- 2013-10-16
